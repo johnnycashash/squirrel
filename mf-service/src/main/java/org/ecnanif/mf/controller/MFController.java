@@ -1,5 +1,6 @@
 package org.ecnanif.mf.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.ecnanif.mf.model.MF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -28,6 +29,7 @@ public class MFController {
     RestTemplate restTemplate;
 
     @GetMapping
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     public ResponseEntity<Resources<MF>> all() {
         ResponseEntity<Resources<MF>> mfList = restTemplate.exchange("http://db-service/db/mf", HttpMethod.GET,
                 null, new ParameterizedTypeReference<Resources<MF>>() {
@@ -39,6 +41,7 @@ public class MFController {
     }
 
     @GetMapping("/{mfId}")
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     public ResponseEntity<Resource<MF>> get(@PathVariable("mfId") final BigInteger mfId) {
         ResponseEntity<Resource<MF>> mf = restTemplate.exchange("http://db-service/db/mf/" + mfId, HttpMethod.GET,
                 null, new ParameterizedTypeReference<Resource<MF>>() {
@@ -49,6 +52,9 @@ public class MFController {
         //notfoundexception
         return ResponseEntity.ok(mfBody);
     }
+    public String  fallbackMethod(int employeeid){
 
+        return "Fallback response:: No details available temporarily";
+    }
 
 }

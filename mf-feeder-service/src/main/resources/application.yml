@@ -6,6 +6,9 @@ server:
   port: 8304
 
 eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
   client:
     healthcheck :
       enabled : true
