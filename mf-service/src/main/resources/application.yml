@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: mf-service
+
+server:
+  port: 8302
+
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8301/eureka
