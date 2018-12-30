@@ -77,7 +77,8 @@ public class DBFeederScheduledAndControlledEvent {
             }
 
         }
-//log unupdated funds and handle all exceptions here only so that data loading is not interrupted
+        //Spring Admin enable first
+        //log unupdated funds and handle all exceptions here only so that data loading is not interrupted
         //hibernate versioning and old data for graphs
         //feign client in place of rest template
         //ControllerAdvice
