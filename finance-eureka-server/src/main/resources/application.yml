@@ -1,9 +1,30 @@
 spring:
   application:
     name: finance-eureka-server
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        password: admin
+        url: http://localhost:8305/admin
+        username: admin
+    security:
+      user:
+        name: client
+        password: client
 
 server:
   port: 8301
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 eureka:
   instance:
@@ -15,3 +36,7 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
     server:
       waitTimeInMsWhenSyncEmpty: 0
+
+#logging:
+#  level:
+#    root: debug

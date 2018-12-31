@@ -1,9 +1,44 @@
 spring:
   application:
     name: mf-feeder-service
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        password: admin
+        url: http://localhost:8305/admin
+        username: admin
+    datasource:
+      password: admin
+      testWhileIdle: true
+      url: jdbc:mysql://192.168.99.100:3306/mf-feeder-service-test?verifyServerCertificate=false&useSSL=true
+      username: admin
+      validationQuery: SELECT 1
+    jpa:
+      hibernate:
+        ddl-auto: update
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL5Dialect
+      show-sql: true
+    security:
+      user:
+        name: client
+        password: client
 
 server:
   port: 8304
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 eureka:
   instance:
@@ -16,3 +51,7 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8301/eureka
+
+#logging:
+#  level:
+#    root: debug

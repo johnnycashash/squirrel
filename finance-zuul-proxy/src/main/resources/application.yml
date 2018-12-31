@@ -1,9 +1,30 @@
 spring:
   application:
     name: finance-zuul-proxy
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        password: admin
+        url: http://localhost:8305/admin
+        username: admin
+    security:
+      user:
+        name: client
+        password: client
 
 server:
   port: 8300
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 zuul:
   #Service will be mapped under the /api URI
@@ -18,3 +39,7 @@ zuul:
     mf-feeder-service:
       path: /mf-feeder-service/**
       url: http://localhost:8304
+
+#logging:
+#  level:
+#    root: debug
