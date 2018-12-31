@@ -26,6 +26,20 @@ management:
       exposure:
         include: '*'
 
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
+  client:
+    healthcheck:
+      enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8301/eureka
+    lease:
+      duration: 5
+
 zuul:
   #Service will be mapped under the /api URI
   prefix: /api
