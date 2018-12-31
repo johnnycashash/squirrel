@@ -1,6 +1,24 @@
 spring:
   application:
     name: mf-feeder-service
+  datasource:
+    password: admin
+    testWhileIdle: true
+    url: jdbc:mysql://192.168.99.100:3306/mf-feeder-service-test?verifyServerCertificate=false&useSSL=true
+    username: admin
+    validationQuery: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  security:
+    user:
+      name: client
+      password: client
   boot:
     admin:
       client:
@@ -12,24 +30,6 @@ spring:
         password: admin
         url: http://localhost:8305/admin
         username: admin
-    datasource:
-      password: admin
-      testWhileIdle: true
-      url: jdbc:mysql://192.168.99.100:3306/mf-feeder-service-test?verifyServerCertificate=false&useSSL=true
-      username: admin
-      validationQuery: SELECT 1
-    jpa:
-      hibernate:
-        ddl-auto: update
-        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.MySQL5Dialect
-      show-sql: true
-    security:
-      user:
-        name: client
-        password: client
 
 server:
   port: 8304
@@ -45,8 +45,8 @@ eureka:
     leaseRenewalIntervalInSeconds: 5
     leaseExpirationDurationInSeconds: 2
   client:
-    healthcheck :
-      enabled : true
+    healthcheck:
+      enabled: true
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
