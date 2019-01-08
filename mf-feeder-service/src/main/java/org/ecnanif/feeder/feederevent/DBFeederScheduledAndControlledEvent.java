@@ -84,6 +84,7 @@ public class DBFeederScheduledAndControlledEvent {
         //ControllerAdvice
         //repositoryrestcontroller for hateoas support vs restcontroller
         //MFResource use https://dzone.com/articles/applying-hateoas-to-a-rest-api-with-spring-boot
+        //Load balance using eureka client's multiple instances
         LOG.debug("DB UPDATED!");
     }
 
