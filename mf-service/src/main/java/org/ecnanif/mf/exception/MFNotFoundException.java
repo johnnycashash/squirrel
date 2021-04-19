@@ -6,6 +6,7 @@ public class MFNotFoundException extends Exception{
     BigInteger mfId;
 
     public BigInteger getMfId() {
+        System.out.println("test");
         return mfId;
     }
 
